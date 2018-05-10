@@ -5,7 +5,9 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wall: {fileID: 1028312077210120, guid: c53c0e6d88cd4674ca46cca99b8e0f85, type: 2}
+  - wallu: {fileID: 1535453699031524, guid: d555426a375b805489655e8e4641fa03, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -203,7 +203,6 @@ GameObject:
   - component: {fileID: 889623054}
   - component: {fileID: 889623053}
   - component: {fileID: 889623052}
-  - component: {fileID: 889623056}
   - component: {fileID: 889623057}
   m_Layer: 0
   m_Name: Sphere
@@ -254,7 +253,7 @@ SphereCollider:
   m_GameObject: {fileID: 889623051}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -278,21 +277,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &889623056
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 889623051}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &889623057
 MonoBehaviour:
   m_ObjectHideFlags: 0
