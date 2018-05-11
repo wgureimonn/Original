@@ -164,7 +164,7 @@ public class enemyAI : MonoBehaviour
         {
             for (z = 0; z < 10; z++)
             {
-                if (wallmaker.map[x, z] == 0)
+                if (wallmaker.map2[x, z] == 0)
                 {
                     SI[x, z] = Mathf.Abs(Gx - x) + Mathf.Abs(Gz - z);
                 }
@@ -179,7 +179,7 @@ public class enemyAI : MonoBehaviour
         {
             for (z = 0; z < 10; z++)
             {
-                OC[x, z] = wallmaker.map[x, z];
+                OC[x, z] = wallmaker.map2[x, z];
             }
         }
     }
@@ -207,7 +207,7 @@ public class enemyAI : MonoBehaviour
     }
     void idou()
     {
-        if (now == 0 && SI[pos.x, pos.y] <= 10)
+        if (now == 0 && SI[pos.x, pos.y] <= 7)
         {
             now = 1;
         }
