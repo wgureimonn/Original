@@ -62,7 +62,6 @@ public class wallmaker2 : MonoBehaviour {
     void Update () {
 		if (Input.GetMouseButtonDown(0)){
             Vector3 mpos= Input.mousePosition;
-            //mpos.y =5;
             ray = pcamera.ScreenPointToRay(mpos);
             bool isRayHit = Physics.Raycast(ray,out hitInfo, reachaableDistance);
             Debug.DrawRay(ray.origin,ray.direction*20,Color.red);

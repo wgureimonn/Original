@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class enemyAI : MonoBehaviour
 {
     int now=0;
     int g=1;
-    public static int[,] OC;
-    public static int[,] SI;
-    public static int[,] C;
-    public static int[,] SC;
+    public static bool flag;
+    private int[,] OC;
+    private int[,] SI;
+    private int[,] C;
+    private int[,] SC;
     int Gx = 10;
     int Gz = 10;
     int cc = 1;
     int cp;
     int sui;
+    private int hp;
     private Vector2Int pos;
     private Vector2Int ipos;
-    private Vector2Int kari;
-    private List<Vector2Int> rout;
+    private Vector3 gen;
 
     int x;
     int xa;
@@ -27,12 +29,13 @@ public class enemyAI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        hp =30;
         pos = new Vector2Int(0, 0);
         openclose();
         suitei();
         cost();
         score();
-        InvokeRepeating("idou", 1, 0.5f);
+        InvokeRepeating("idou", 1, 1.0f);
     }
     private void score()
     {
@@ -164,7 +167,7 @@ public class enemyAI : MonoBehaviour
         {
             for (z = 0; z < 10; z++)
             {
-                if (wallmaker.map2[x, z] == 0)
+                if (wallmaker2.map[x, z] == 0)
                 {
                     SI[x, z] = Mathf.Abs(Gx - x) + Mathf.Abs(Gz - z);
                 }
@@ -179,7 +182,7 @@ public class enemyAI : MonoBehaviour
         {
             for (z = 0; z < 10; z++)
             {
-                OC[x, z] = wallmaker.map2[x, z];
+                OC[x, z] = wallmaker2.map[x, z];
             }
         }
     }
@@ -203,6 +206,13 @@ public class enemyAI : MonoBehaviour
         {
             transform.position -= new Vector3(0, 0, 1);
         }
+        if(flag){
+            flag=false;
+            openclose();
+            cost();
+            score();
+
+        }
 
     }
     void idou()
@@ -221,11 +231,19 @@ public class enemyAI : MonoBehaviour
         {
             round();
         }
-        transform.position = new Vector3(pos.x, 1, pos.y);
+        transform.position =Vector3.Lerp(gen, new Vector3(pos.x, 1, pos.y),1);
+        if(pos.x==9&&pos.y==9){
+            SceneManager.LoadScene("gameover");
+        }
+        hp--;
+        if(hp<0){
+            Destroy(gameObject);
+        }
 
     }
     void round()
     {
+        gen = new Vector3(pos.x,1,pos.y);
         List<Vector2Int> houkou = new List<Vector2Int>();
         if ((pos.y < 9) && (C[pos.x, pos.y + 1] == C[pos.x, pos.y] + g))
         {

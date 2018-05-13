@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class wallmaker : MonoBehaviour {
-	public static int[,] map2;
 
 	public GameObject wall;
 	public GameObject wallu;
@@ -21,16 +20,10 @@ public class wallmaker : MonoBehaviour {
     public Vector3Int posint;
 	// Use this for initialization
     void Awake(){
-        map2=new int[10,10];
         wallumake();      
     }
     void Start()
     {
-        for(x=0;x<10;x++){
-            for(z=0;x<10;z++){
-                map2[x,z]=map2[x,z];
-            }
-        }
         wallmake();
     }
     private void wallumake(){
@@ -47,7 +40,7 @@ public class wallmaker : MonoBehaviour {
     {
         for (x=0;x<10;x++){
             for(z=0;z<10;z++){
-                if(map2[x,z]==0){
+                if(wallmaker2.map[x,z]==2){
                     Instantiate(wall, new Vector3(x, 1, z), Quaternion.identity);
                 }
             }
