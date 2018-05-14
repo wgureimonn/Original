@@ -26,7 +26,8 @@ public class enemyAI : MonoBehaviour
     int xa;
     int z = 0;
     int za;
-    // Use this for initialization
+    float tm=1.0f;
+
     void Start()
     {
         hp =30;
@@ -263,6 +264,9 @@ public class enemyAI : MonoBehaviour
         }
         if (houkou.Count == 0)
         {
+        if(pos.x==9&&pos.y==9){
+            SceneManager.LoadScene("gameover");
+        }
             openclose();
             cost();
             score();

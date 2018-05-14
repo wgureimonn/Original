@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class title : MonoBehaviour {
-
-	// Use this for initialization
 	void Start () {
 		
 	}

@@ -18,6 +18,7 @@ public class enemyAI2 : MonoBehaviour
     int sui;
     private int hp;
     private int co=0;
+    public static bool flag2;
     private Vector2Int pos;
     private Vector2Int ipos;
     
@@ -210,27 +211,19 @@ public class enemyAI2 : MonoBehaviour
         {
             transform.position -= new Vector3(0, 0, 1);
         }
+        if(flag2){
+            flag2=false;
+            openclose();
+            cost();
+            score();
+
+        }
 
     }
     void idou()
     {
-        if(pos.x==9&&pos.y==9){
-            SceneManager.LoadScene("gameover");
-        }
-        if (now == 0 && SI[pos.x, pos.y] <= 7)
-        {
-            now = 1;
-        }
-        if (now == 1)
-        {
-            goal();
-            now = 2;
-            g=-1;
-        }
-        else
-        {
-            round();
-        }
+        
+        round();
         transform.position = new Vector3(pos.x, 1, pos.y);
         if(pos.x==9&&pos.y==9){
             SceneManager.LoadScene("gameover");
@@ -238,6 +231,7 @@ public class enemyAI2 : MonoBehaviour
         hp--;
         if(hp<0){
             Destroy(gameObject);
+            hakai();
         }
 
     }
@@ -262,32 +256,9 @@ public class enemyAI2 : MonoBehaviour
         }
         if (houkou.Count == 0)
         {
-            if(Physics.Raycast(kaminome.transform.position,kaminome.transform.forward,out hitInfo,1)){
-                if(hitInfo.collider.gameObject.CompareTag("wall")){
-                    Destroy(hitInfo.collider.gameObject);
-                    wallmaker2.map[pos.x,pos.y+1]=0;
-                    
-                }
-            }
-            if(Physics.Raycast(kaminome.transform.position,kaminome.transform.right,out hitInfo,1)){
-                if(hitInfo.collider.gameObject.CompareTag("wall")){
-                    Destroy(hitInfo.collider.gameObject);
-                    wallmaker2.map[pos.x+1,pos.y]=0;
-                }
-            }
-            if(Physics.Raycast(kaminome.transform.position,-kaminome.transform.forward,out hitInfo,1)){
-                if(hitInfo.collider.gameObject.CompareTag("wall")){
-                    Destroy(hitInfo.collider.gameObject);
-                    wallmaker2.map[pos.x,pos.y-1]=0;
-                }
-            }
-            if(Physics.Raycast(kaminome.transform.position,-kaminome.transform.right,out hitInfo,1)){
-                if(hitInfo.collider.gameObject.CompareTag("wall")){
-                    Destroy(hitInfo.collider.gameObject);
-                    wallmaker2.map[pos.x-1,pos.y]=0;
-                }
-            }
-            enemyAI.flag=true;
+            hakai();
+            enemyAI.flag = true;
+            enemyAI2.flag2 = true;
             Destroy(gameObject);
         }
         else
@@ -295,6 +266,44 @@ public class enemyAI2 : MonoBehaviour
             pos += houkou[Random.Range(0, houkou.Count)];
         }
     }
+
+    private void hakai()
+    {
+        if (Physics.Raycast(kaminome.transform.position, kaminome.transform.forward, out hitInfo, 1))
+        {
+            if (hitInfo.collider.gameObject.CompareTag("wall"))
+            {
+                Destroy(hitInfo.collider.gameObject);
+                wallmaker2.map[pos.x, pos.y + 1] = 0;
+
+            }
+        }
+        if (Physics.Raycast(kaminome.transform.position, kaminome.transform.right, out hitInfo, 1))
+        {
+            if (hitInfo.collider.gameObject.CompareTag("wall"))
+            {
+                Destroy(hitInfo.collider.gameObject);
+                wallmaker2.map[pos.x + 1, pos.y] = 0;
+            }
+        }
+        if (Physics.Raycast(kaminome.transform.position, -kaminome.transform.forward, out hitInfo, 1))
+        {
+            if (hitInfo.collider.gameObject.CompareTag("wall"))
+            {
+                Destroy(hitInfo.collider.gameObject);
+                wallmaker2.map[pos.x, pos.y - 1] = 0;
+            }
+        }
+        if (Physics.Raycast(kaminome.transform.position, -kaminome.transform.right, out hitInfo, 1))
+        {
+            if (hitInfo.collider.gameObject.CompareTag("wall"))
+            {
+                Destroy(hitInfo.collider.gameObject);
+                wallmaker2.map[pos.x - 1, pos.y] = 0;
+            }
+        }
+    }
+
     void goal()
     {
         ipos.x=pos.x;

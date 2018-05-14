@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class clear : MonoBehaviour {
 	public Text time;
-	public static float zikan=30.0f;
+	public static float zikan=44.0f;
 	// Use this for initialization
 	void Start () {
 		
