@@ -6,6 +6,9 @@ TagManager:
   tags:
   - floor
   - wall
+  - wallmake
+  - trapmake
+  - needle
   layers:
   - Default
   - TransparentFX

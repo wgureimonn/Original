@@ -6,6 +6,7 @@ public class wallmaker : MonoBehaviour {
 
 	public GameObject wall;
 	public GameObject wallu;
+    public GameObject trap;
     GameObject wallc;
     GameObject wallk;
     
@@ -42,6 +43,9 @@ public class wallmaker : MonoBehaviour {
             for(z=0;z<10;z++){
                 if(wallmaker2.map[x,z]==2){
                     Instantiate(wall, new Vector3(x, 1, z), Quaternion.identity);
+                }
+                if(wallmaker2.map[x,z]==3){
+                    Instantiate(trap, new Vector3(x, 0.5f, z), Quaternion.identity);
                 }
             }
         }

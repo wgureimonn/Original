@@ -42,7 +42,7 @@ public class enemyAI2 : MonoBehaviour
         suitei();
         cost();
         score();
-        InvokeRepeating("idou", 1, 0.5f);
+        InvokeRepeating("idou", 1, 0.71f);
     }
     private void score()
     {
@@ -172,7 +172,7 @@ public class enemyAI2 : MonoBehaviour
         {
             for (z = 0; z < 10; z++)
             {
-                if (wallmaker2.map[x, z] == 0)
+                if (wallmaker2.map[x, z] == 0||wallmaker2.map[x,z]==3)
                 {
                     SI[x, z] = Mathf.Abs(Gx - x) + Mathf.Abs(Gz - z);
                 }
@@ -188,6 +188,9 @@ public class enemyAI2 : MonoBehaviour
             for (z = 0; z < 10; z++)
             {
                 OC[x, z] = wallmaker2.map[x, z];
+                if(OC[x,z]==3){
+                    OC[x,z]=0;
+                }
             }
         }
     }
@@ -195,22 +198,6 @@ public class enemyAI2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("up"))
-        {
-            transform.position -= new Vector3(1, 0, 0);
-        }
-        if (Input.GetKeyDown("down"))
-        {
-            transform.position += new Vector3(1, 0, 0);
-        }
-        if (Input.GetKeyDown("right"))
-        {
-            transform.position += new Vector3(0, 0, 1);
-        }
-        if (Input.GetKeyDown("left"))
-        {
-            transform.position -= new Vector3(0, 0, 1);
-        }
         if(flag2){
             flag2=false;
             openclose();
@@ -227,6 +214,9 @@ public class enemyAI2 : MonoBehaviour
         transform.position = new Vector3(pos.x, 1, pos.y);
         if(pos.x==9&&pos.y==9){
             SceneManager.LoadScene("gameover");
+        }
+        if(wallmaker2.map[pos.x,pos.y]==3){
+            hp=hp-3;
         }
         hp--;
         if(hp<0){
@@ -302,18 +292,5 @@ public class enemyAI2 : MonoBehaviour
                 wallmaker2.map[pos.x - 1, pos.y] = 0;
             }
         }
-    }
-
-    void goal()
-    {
-        ipos.x=pos.x;
-        ipos.y=pos.y;
-        pos.x=Gx-1;
-        pos.y=Gz-1;
-        openclose();
-        cost();
-        score();
-        pos.x=ipos.x;
-        pos.y=ipos.y;
     }
 }

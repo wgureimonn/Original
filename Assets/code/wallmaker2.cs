@@ -7,6 +7,7 @@ public class wallmaker2 : MonoBehaviour {
 
 	public GameObject wall;
 	public GameObject wallu;
+    public GameObject trap;
     private float reachaableDistance =200.0f;
     GameObject wallc;
     GameObject wallk;
@@ -16,6 +17,7 @@ public class wallmaker2 : MonoBehaviour {
     float xf;
 	int z;
     int za;
+    int cs=0;
     float zf;
     Ray ray;
     RaycastHit hitInfo;
@@ -66,17 +68,35 @@ public class wallmaker2 : MonoBehaviour {
             bool isRayHit = Physics.Raycast(ray,out hitInfo, reachaableDistance);
             Debug.DrawRay(ray.origin,ray.direction*20,Color.red);
             if(isRayHit){
+                if(hitInfo.collider.gameObject.CompareTag("wallmake")){
+                    cs=0;
+                    print(cs);
+                    
+                }
+                if(hitInfo.collider.gameObject.CompareTag("trapmake")){
+                    cs=1;
+                    print(cs);
+                }
                 if(hitInfo.collider.gameObject.CompareTag("floor")){
                     hitPos = hitInfo.collider.gameObject.transform.position;
                     seiseipos = hitPos + hitInfo.normal;
                     suuti();
-                    Instantiate(wall,seiseipos,Quaternion.identity);
-                    map[xa,za]=2;
+                    if(cs==0){
+                        seiseipos.y=1;
+                        Instantiate(wall,seiseipos,Quaternion.identity);
+                        map[xa,za]=2;                        
+                    }
+                    if(cs==1){
+                        seiseipos.y=0.5f;                        
+                        Instantiate(trap,seiseipos,Quaternion.identity);  
+                        map[xa,za]=3;                                              
+                    }
                 }
                 else{
                     return;
                 }
             }  
+            
         }
         if (Input.GetMouseButtonDown(1)){
             Vector3 mpos= Input.mousePosition;
@@ -86,14 +106,12 @@ public class wallmaker2 : MonoBehaviour {
             Debug.DrawRay(ray.origin,ray.direction*20,Color.red);
             if(isRayHit){
                 if(hitInfo.collider.gameObject.CompareTag("wall")){
-                   hitPos = hitInfo.collider.gameObject.transform.position;
-                   seiseipos = hitPos + hitInfo.normal;
-                   suuti();
                    Destroy(hitInfo.collider.gameObject);
                    map[xa,za]=0;
                 }
-                else{
-                    return;
+                if(hitInfo.collider.gameObject.CompareTag("needle")){
+                   Destroy(hitInfo.collider.gameObject);
+                   map[xa,za]=0;
                 }
             }
 

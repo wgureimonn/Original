@@ -769,6 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 1028312077210120, guid: c53c0e6d88cd4674ca46cca99b8e0f85, type: 2}
   wallu: {fileID: 1535453699031524, guid: d555426a375b805489655e8e4641fa03, type: 2}
+  trap: {fileID: 1801910808873676, guid: 7ed4ce6e537257045b05fa0f526064b1, type: 2}
   pos: {x: 0, y: 0, z: 0}
   posint: {x: 0, y: 0, z: 0}
 --- !u!4 &2135901313

@@ -184,6 +184,9 @@ public class enemyAI : MonoBehaviour
             for (z = 0; z < 10; z++)
             {
                 OC[x, z] = wallmaker2.map[x, z];
+                if(OC[x,z]==3){
+                    OC[x,z]=0;
+                }
             }
         }
     }
@@ -191,22 +194,6 @@ public class enemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("up"))
-        {
-            transform.position -= new Vector3(1, 0, 0);
-        }
-        if (Input.GetKeyDown("down"))
-        {
-            transform.position += new Vector3(1, 0, 0);
-        }
-        if (Input.GetKeyDown("right"))
-        {
-            transform.position += new Vector3(0, 0, 1);
-        }
-        if (Input.GetKeyDown("left"))
-        {
-            transform.position -= new Vector3(0, 0, 1);
-        }
         if(flag){
             flag=false;
             openclose();
@@ -233,8 +220,8 @@ public class enemyAI : MonoBehaviour
             round();
         }
         transform.position =Vector3.Lerp(gen, new Vector3(pos.x, 1, pos.y),1);
-        if(pos.x==9&&pos.y==9){
-            SceneManager.LoadScene("gameover");
+        if(wallmaker2.map[pos.x,pos.y]==3){
+            hp=hp-3;
         }
         hp--;
         if(hp<0){
@@ -262,11 +249,10 @@ public class enemyAI : MonoBehaviour
         {
             houkou.Add(Vector2Int.down);
         }
+        
+        
         if (houkou.Count == 0)
         {
-        if(pos.x==9&&pos.y==9){
-            SceneManager.LoadScene("gameover");
-        }
             openclose();
             cost();
             score();
@@ -274,6 +260,9 @@ public class enemyAI : MonoBehaviour
         else
         {
             pos += houkou[Random.Range(0, houkou.Count)];
+        }
+        if((pos.x==8&&pos.y==9)||(pos.x==9&&pos.y==8)){
+            Invoke ("last",1);
         }
     }
     void goal()
@@ -287,5 +276,9 @@ public class enemyAI : MonoBehaviour
         score();
         pos.x=ipos.x;
         pos.y=ipos.y;
+    }
+    void last(){
+        transform.position =new Vector3(9, 1, 9);
+        SceneManager.LoadScene("gameover");
     }
 }
