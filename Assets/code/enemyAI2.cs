@@ -205,6 +205,9 @@ public class enemyAI2 : MonoBehaviour
             score();
 
         }
+        if(SI[pos.x, pos.y] <= 7){
+            flush.flag3=true;            
+        }
 
     }
     void idou()
@@ -249,6 +252,7 @@ public class enemyAI2 : MonoBehaviour
             hakai();
             enemyAI.flag = true;
             enemyAI2.flag2 = true;
+            flush.flag3 = true;
             Destroy(gameObject);
         }
         else

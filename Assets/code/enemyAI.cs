@@ -201,6 +201,9 @@ public class enemyAI : MonoBehaviour
             score();
 
         }
+        if(SI[pos.x, pos.y] <= 7){
+            flush.flag3=true;            
+        }
 
     }
     void idou()
