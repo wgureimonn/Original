@@ -205,14 +205,14 @@ public class enemyAI2 : MonoBehaviour
             score();
 
         }
-        if(SI[pos.x, pos.y] <= 7){
-            flush.flag3=true;            
-        }
+        
 
     }
     void idou()
     {
-        
+        if(SI[pos.x, pos.y] <= 7){
+            flush.flag3=true;            
+        }
         round();
         transform.position = new Vector3(pos.x, 1, pos.y);
         if(pos.x==9&&pos.y==9){
