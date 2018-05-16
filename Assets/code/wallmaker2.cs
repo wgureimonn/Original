@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class wallmaker2 : MonoBehaviour {
 	public static int[,] map;
@@ -8,6 +9,9 @@ public class wallmaker2 : MonoBehaviour {
 	public GameObject wall;
 	public GameObject wallu;
     public GameObject trap;
+    public GameObject cli;
+    public Text wc;
+    public Text tc;
     private float reachaableDistance =200.0f;
     GameObject wallc;
     GameObject wallk;
@@ -18,6 +22,8 @@ public class wallmaker2 : MonoBehaviour {
 	int z;
     int za;
     int cs=0;
+    int wco=7;
+    int tco=3;
     float zf;
     Ray ray;
     RaycastHit hitInfo;
@@ -62,6 +68,10 @@ public class wallmaker2 : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        wc.text=wco.ToString();
+        tc.text=tco.ToString();
+        
+
 		if (Input.GetMouseButtonDown(0)){
             Vector3 mpos= Input.mousePosition;
             ray = pcamera.ScreenPointToRay(mpos);
@@ -71,25 +81,28 @@ public class wallmaker2 : MonoBehaviour {
                 if(hitInfo.collider.gameObject.CompareTag("wallmake")){
                     cs=0;
                     print(cs);
-                    
+                    cli.gameObject.transform.position = new Vector3(1.3f,1,11.7f);
                 }
                 if(hitInfo.collider.gameObject.CompareTag("trapmake")){
                     cs=1;
                     print(cs);
+                    cli.gameObject.transform.position = new Vector3(4.2f,1,11.7f);
                 }
                 if(hitInfo.collider.gameObject.CompareTag("floor")){
                     hitPos = hitInfo.collider.gameObject.transform.position;
                     seiseipos = hitPos + hitInfo.normal;
                     suuti();
-                    if(cs==0){
+                    if(cs==0&&wco>0){
                         seiseipos.y=1;
                         Instantiate(wall,seiseipos,Quaternion.identity);
-                        map[xa,za]=2;                        
+                        map[xa,za]=2;           
+                        wco--;             
                     }
-                    if(cs==1){
+                    if(cs==1&&tco>0){
                         seiseipos.y=0.5f;                        
                         Instantiate(trap,seiseipos,Quaternion.identity);  
-                        map[xa,za]=3;                                              
+                        map[xa,za]=3;  
+                        tco--;                                            
                     }
                 }
                 else{
@@ -108,10 +121,12 @@ public class wallmaker2 : MonoBehaviour {
                 if(hitInfo.collider.gameObject.CompareTag("wall")){
                    Destroy(hitInfo.collider.gameObject);
                    map[xa,za]=0;
+                   wco++;
                 }
                 if(hitInfo.collider.gameObject.CompareTag("needle")){
                    Destroy(hitInfo.collider.gameObject);
                    map[xa,za]=0;
+                   tco++;
                 }
             }
 
