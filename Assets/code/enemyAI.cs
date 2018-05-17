@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class enemyAI : MonoBehaviour
 {
+	public AudioClip em;
+	private AudioSource au;
     int now=0;
     int g=1;
     public static bool flag;
@@ -32,6 +34,7 @@ public class enemyAI : MonoBehaviour
     {
         hp =30;
         pos = new Vector2Int(0, 0);
+        au = gameObject.GetComponent<AudioSource>();
         openclose();
         suitei();
         cost();
@@ -195,11 +198,16 @@ public class enemyAI : MonoBehaviour
     void Update()
     {
         if(flag){
-            flag=false;
-            openclose();
-            suitei();
-            cost();
-            score();
+            if(now ==0){
+                flag=false;
+                openclose();
+                suitei();
+                cost();
+                score();
+            }
+            if(now==2){
+                goal();
+            }
 
         }
 
@@ -221,11 +229,9 @@ public class enemyAI : MonoBehaviour
             now = 2;
             g=-1;
         }
-        else
-        {
-            round();
-        }
+        round();
         transform.position =Vector3.Lerp(gen, new Vector3(pos.x, 1, pos.y),1);
+        au.PlayOneShot(em);
         if(wallmaker2.map[pos.x,pos.y]==3){
             hp=hp-3;
         }
@@ -233,6 +239,7 @@ public class enemyAI : MonoBehaviour
         if(hp<0){
             Destroy(gameObject);
         }
+        
 
     }
     void round()

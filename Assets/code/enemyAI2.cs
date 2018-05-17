@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class enemyAI2 : MonoBehaviour
 {
+	public AudioClip em2;
+	private AudioSource au;
     int now=0;
     int g=1;
     private int[,] OC;
@@ -41,6 +43,7 @@ public class enemyAI2 : MonoBehaviour
         pos = new Vector2Int(0, 0);
         SI = new int[10,10];
         SC = new int[10,10];
+        au = gameObject.GetComponent<AudioSource>();
         openclose();
         suitei();
         cost();
@@ -224,6 +227,7 @@ public class enemyAI2 : MonoBehaviour
         }
         round();
         transform.position = new Vector3(pos.x, 1, pos.y);
+        au.PlayOneShot(em2);
         if(pos.x==9&&pos.y==9){
             SceneManager.LoadScene("gameover");
         }

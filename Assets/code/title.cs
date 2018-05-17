@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class title : MonoBehaviour {
+	public AudioClip cl;
+	private AudioSource au;
 	void Start () {
-		
+		au = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -14,6 +16,7 @@ public class title : MonoBehaviour {
 		
 	}
 	public void OnClick(){
+		au.PlayOneShot(cl);
 		SceneManager.LoadScene("mapmakeing");
 	}
 }
