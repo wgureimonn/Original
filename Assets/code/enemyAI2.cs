@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class enemyAI2 : MonoBehaviour
 {
@@ -30,10 +31,12 @@ public class enemyAI2 : MonoBehaviour
     RaycastHit hitInfo;
     public GameObject kaminome;
     
+    
 
    // Use this for initialization
     void Start()
     {
+        
         hp=20;
         pos = new Vector2Int(0, 0);
         SI = new int[10,10];
@@ -198,20 +201,26 @@ public class enemyAI2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       if(SI[pos.x, pos.y] <= 7){
+            flush.flag3=true; 
+            ppp.flag4 = true;
+       }
         if(flag2){
             flag2=false;
             openclose();
+            suitei();
             cost();
             score();
 
         }
+        
         
 
     }
     void idou()
     {
         if(SI[pos.x, pos.y] <= 7){
-            flush.flag3=true;            
+            flush.flag3=true;         
         }
         round();
         transform.position = new Vector3(pos.x, 1, pos.y);
@@ -253,6 +262,7 @@ public class enemyAI2 : MonoBehaviour
             enemyAI.flag = true;
             enemyAI2.flag2 = true;
             flush.flag3 = true;
+            ppp.flag4 = true;
             Destroy(gameObject);
         }
         else

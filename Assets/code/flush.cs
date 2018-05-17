@@ -20,6 +20,5 @@ public class flush : MonoBehaviour {
 			flag3 =false;
 		}
 		this.img.color = Color.Lerp(this.img.color,Color.clear,Time.deltaTime);
-		
 	}
 }

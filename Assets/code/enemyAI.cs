@@ -197,6 +197,7 @@ public class enemyAI : MonoBehaviour
         if(flag){
             flag=false;
             openclose();
+            suitei();
             cost();
             score();
 
@@ -206,7 +207,9 @@ public class enemyAI : MonoBehaviour
     void idou()
     {
         if(SI[pos.x, pos.y] <= 7){
-            flush.flag3=true;            
+            flush.flag3=true; 
+            ppp.flag4 = true;
+                       
         }
         if (now == 0 && SI[pos.x, pos.y] <= 7)
         {
