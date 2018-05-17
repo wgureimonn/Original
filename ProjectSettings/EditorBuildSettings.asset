@@ -6,17 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/scene/title.unity
+    guid: 1f733d0f6fe600a44a01dee0203b08f1
+  - enabled: 1
     path: Assets/scene/mapmakeing.unity
     guid: fb9964d24322c5a4483f01c27329c87f
   - enabled: 1
     path: Assets/scene/play.unity
     guid: c04d3ee3ff5f69d4cb4dc1495a80dc29
   - enabled: 1
-    path: Assets/scene/title.unity
-    guid: 1f733d0f6fe600a44a01dee0203b08f1
-  - enabled: 1
     path: Assets/scene/gameover.unity
     guid: 1387053818e070046acad17abfc042d9
   - enabled: 1
     path: Assets/scene/clear.unity
     guid: fca34ce4a504e9e41a035973bc758c7d
+  - enabled: 1
+    path: Assets/scene/teki.unity
+    guid: 120f026dbce451b4e8876429cc7a37b7
+  - enabled: 1
+    path: Assets/scene/setume.unity
+    guid: 3bffa5967d3b86e4d9585ccae4f191c8
