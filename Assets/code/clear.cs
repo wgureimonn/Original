@@ -17,7 +17,9 @@ public class clear : MonoBehaviour {
 		zikan -= Time.deltaTime;
 		time.text = "Time : "+zikan.ToString("f2");
 		if (zikan <0){
+			zikan = 44.0f;
 			SceneManager.LoadScene("clear");
+			
 		}
 	}
 }

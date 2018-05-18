@@ -229,6 +229,7 @@ public class enemyAI2 : MonoBehaviour
         transform.position = new Vector3(pos.x, 1, pos.y);
         au.PlayOneShot(em2);
         if(pos.x==9&&pos.y==9){
+            clear.zikan = 44.0f;
             SceneManager.LoadScene("gameover");
         }
         if(wallmaker2.map[pos.x,pos.y]==3){

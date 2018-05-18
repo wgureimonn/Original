@@ -292,6 +292,8 @@ public class enemyAI : MonoBehaviour
     }
     void last(){
         transform.position =new Vector3(9, 1, 9);
+        clear.zikan = 44.0f;
+        
         SceneManager.LoadScene("gameover");
     }
 }
