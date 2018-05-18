@@ -22,8 +22,8 @@ public class wallmaker2 : MonoBehaviour {
 	int z;
     int za;
     int cs=0;
-    int wco=7;
-    int tco=3;
+    int wco=17;
+    int tco=5;
     float zf;
     Ray ray;
     RaycastHit hitInfo;
@@ -37,7 +37,6 @@ public class wallmaker2 : MonoBehaviour {
     void Awake(){
 		map=new int[10,10];
 
-        wallmake();
         wallumake();
         
         
@@ -118,7 +117,9 @@ public class wallmaker2 : MonoBehaviour {
             bool isRayHit = Physics.Raycast(ray,out hitInfo, reachaableDistance);
             Debug.DrawRay(ray.origin,ray.direction*20,Color.red);
             if(isRayHit){
+                suuti();
                 if(hitInfo.collider.gameObject.CompareTag("wall")){
+                    
                    Destroy(hitInfo.collider.gameObject);
                    map[xa,za]=0;
                    wco++;
